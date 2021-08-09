@@ -1,5 +1,13 @@
-import React from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { HomePage } from "./pages";
 
-const App = () => <h1>Setup React App</h1>;
+const App = () => (
+  <Router>
+    <Route exact path="/">
+      <Redirect to="/questions" />
+    </Route>
+    <Route component={HomePage} exact path="/questions" />
+  </Router>
+)
 
 export default App;
