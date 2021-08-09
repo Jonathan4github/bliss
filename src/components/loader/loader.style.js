@@ -24,7 +24,7 @@ const SpinContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height:80vh;
+  height:50vh;
 `
 
 export {Spin, SpinContainer};

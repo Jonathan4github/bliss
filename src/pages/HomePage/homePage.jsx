@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react';
 
-import { Loader, RetryAction } from '../../components';
+import { Loader, RetryAction, QuestionsList, Navbar, Search, ShareScreen,  } from '../../components';
 import { checkHealthStatus } from '../../api';
+import { Collection, Button } from './homePage.style';
 
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [serverHealthOk, setSeverHealthOk] = useState(false);
+
+  const toggle = () => setVisible(!visible);
 
   const checkServerHealth = async () => {
     const {data: {status}} = await checkHealthStatus();
@@ -23,7 +27,7 @@ const HomePage = () => {
       if (!serverHealthOk) {
         return <RetryAction />
       } else {
-        return (<h1> Question List</h1>)
+        return <QuestionsList />
       }
     }
   }
@@ -32,8 +36,21 @@ const HomePage = () => {
   
   return (
     <>
-      {isLoading && <Loader />}
-      { questionList() }
+      {isLoading ? (
+        <Loader />
+      ):(
+        <>
+          {visible && <ShareScreen toggle={toggle} />}
+          <Navbar />
+          <Collection>
+            <div style={{display: 'grid'}}>
+              <Search />
+              <div><Button onClick={toggle}>Share</Button></div>
+            </div>
+            { questionList() }
+          </Collection>
+        </>
+      )}
     </>
   )
 }
