@@ -5,6 +5,7 @@ import 'react-toastify/scss/main.scss';
 
 import { AppStateProvider } from './store';
 import { HomePage, QuestionDetailsPage } from './pages';
+import NetworkDetector from './hoc/NetworkDetector';
 
 toast.configure();
 
@@ -20,4 +21,4 @@ const App = () => (
   </AppStateProvider>
 )
 
-export default App;
+export default NetworkDetector(App);
