@@ -1,5 +1,15 @@
 import React from 'react';
 
-const QuestionDetailsPage = () => <h1>Question Details Page</h1>
+import { Navbar, QuestionDetails }from '../../components';
+import Container from './questionDetailsPage.style';
+
+const QuestionDetailsPage = ({ match }) => (
+  <>
+    <Navbar backNav={true} />
+    <Container>
+      <QuestionDetails match={match} />
+    </Container>
+  </>
+)
 
 export default QuestionDetailsPage;

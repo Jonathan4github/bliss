@@ -20,10 +20,6 @@ const ModalContent = styled.div`
   border: 1px solid #888;
   width: 350px;
 
-  span {
-    color: ${({ theme }) => theme.danger};
-  }
-
   .close {
     color: #aaaaaa;
     float: right;
@@ -68,4 +64,8 @@ const Form = styled.form`
   }
 `
 
-export {Modal, ModalContent, Form};
+const ErrorMsg = styled.span `
+  color: ${({ theme }) => theme.danger} !important;
+`
+
+export {Modal, ModalContent, Form, ErrorMsg };

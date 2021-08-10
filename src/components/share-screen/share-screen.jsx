@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { shareContentUrl } from '../../api';
-import { Modal, ModalContent, Form } from './share-screen.style';
+import { Modal, ModalContent, Form, ErrorMsg } from './share-screen.style';
 
 const ShareScreen = ({toggle}) => {
   const [destinationEmail, setDestinationEmail] = useState('');
@@ -50,7 +50,7 @@ const ShareScreen = ({toggle}) => {
               Share
             </button>
           </Form>
-          {!valid && destinationEmail && <span>enter a valid email</span>}
+          {!valid && destinationEmail && <ErrorMsg>enter a valid email</ErrorMsg>}
         </ModalContent>
       </Modal>
     </>
