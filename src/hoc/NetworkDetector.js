@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
-export default function (ComposedComponent) {
+const CheckNetwork = (ComposedComponent) => {
 
   class NetworkDetector extends Component {
     state = {
@@ -55,3 +55,5 @@ export default function (ComposedComponent) {
 
   return NetworkDetector;
 }
+
+export default CheckNetwork;

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, { useRef, useState, useCallback, useEffect, useContext } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import { StateContext as state } from '../../store';
@@ -13,7 +13,7 @@ const Search = () => {
   const queryParams = new URLSearchParams(search).get("filter");
   const inputRef = useRef();
 
-  const filterQuestion = async () => {
+  const filterQuestion = useCallback(async () => {
     history.push({
       pathname:'/questions',
       search: `?filter=${filterValue}`
@@ -21,7 +21,7 @@ const Search = () => {
 
     const { data } = await fetchQuestions(filterValue);
     setQuestions(data);
-  }
+  }, [filterValue, history, setQuestions])
 
   useEffect(() => {
     if(queryParams) {
@@ -31,7 +31,7 @@ const Search = () => {
       inputRef.current.focus();
       filterQuestion(filterValue);
     }
-  }, [queryParams]);
+  }, [queryParams, filterQuestion, filterValue]);
 
   return (
     <Form>

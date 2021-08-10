@@ -24,10 +24,10 @@ const QuestionDetails = ({match}) => {
         setIsLoading(false);
       }
     })()
-  },[]);
+  }, [questionId]);
 
   const handleVote = async(e) => {
-    const { value } = e.target;
+    const { value, name } = e.target;
     const vote = choices.map(c => {
       if(c.choice === value){ c.votes += 1}
       return c
@@ -35,7 +35,7 @@ const QuestionDetails = ({match}) => {
 
     setQuestionDetail(prevState => ({
       ...prevState,
-      ['choices']: vote
+      [name]: vote
     }));
 
     const { status } = await addVote(questionId, vote);
@@ -64,7 +64,13 @@ const QuestionDetails = ({match}) => {
 
   const buildChoices = () => 
     choices && choices.map(({choice, votes}) => (
-    <button className="option" key={choice} value={choice} onClick={handleVote} disabled={disabled}>
+    <button 
+      className="option"
+      key={choice} value={choice}
+      onClick={handleVote}
+      disabled={disabled}
+      name="choices"
+    >
       <div className="choice">{choice}</div>
       <span>{votes} views</span>
     </button>
