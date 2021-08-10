@@ -15,7 +15,7 @@ const App = () => (
         <Redirect to="/questions" />
       </Route>
       <Route component={HomePage} exact path="/questions" />
-      <Route component={QuestionDetailsPage} exact path="/questions/:id" />
+      <Route component={QuestionDetailsPage} exact path="/questions/:questionId" />
     </Router>
   </AppStateProvider>
 )
